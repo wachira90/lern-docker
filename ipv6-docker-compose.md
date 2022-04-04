@@ -77,3 +77,12 @@ docker@test-imac:~/testipv6$ docker network inspect netv61
 ]
 docker@test-imac:~/testipv6$
 ````
+
+## create interface ipv6 command
+````
+docker network create --ipv6 \
+--subnet="2001:db8:1::/64" \
+--gateway="2001:db8:1::1" mynetv61
+````
+
+

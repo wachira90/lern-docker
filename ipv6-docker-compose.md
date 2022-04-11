@@ -85,4 +85,44 @@ docker network create --ipv6 \
 --gateway="2001:db8:1::1" mynetv61
 ````
 
+## example 2
+
+````
+version: "2.4"
+
+services:
+  www1:
+    image: wachira90/nginx:1.21.4
+    restart: unless-stopped
+    ports:
+      - 9001:80
+    networks:
+      net2:
+        ipv6_address: "fc00:1000::e68d:8cff:fe03:feed"
+
+  www2:
+    image: wachira90/nginx:1.21.4
+    restart: unless-stopped
+    ports:
+      - 9002:80
+    networks:
+      - net2
+
+networks:
+  net2:
+    name: net2
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: fc00:1000:0000:0000:e68d:8cff::/64
+          gateway: fc00:1000::e68d:8cff:fe03:fa1c
+````
+
+## check command 
+
+````
+docker network ls
+
+docker network inspect net2
+````
 

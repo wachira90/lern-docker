@@ -4,20 +4,19 @@
 
 ````
 version: "2.4"
-
 services:
-  alp2:
-    container_name: alp2
-    image: wachira90/nginx:1.21.4
-#    command: ping6 -c 4 2001:db8:a::1
+  alp1:
+    container_name: alp1
+    image: busybox:1.35
+    command: ping6 2001:db8:a::1
     ports:
-      - "7001:80"
+      - "6001:80"
     networks:
-      - netv61
+      - net2
 
 networks:
-  netv61:
-    name: netv61
+  net2:
+    name: net2
     enable_ipv6: true
     ipam:
       config:
@@ -28,10 +27,10 @@ networks:
 ## check
 
 ````
-docker@test-imac:~/testipv6$ docker network inspect netv61
+docker@test-imac:~/testipv6$ docker network inspect net2
 [
     {
-        "Name": "netv61",
+        "Name": "net2",
         "Id": "16ab8c9a75ae4dfe9d6ce26fd16679460de6c856000d3e7885b49b16bacb224c",
         "Created": "2022-04-04T18:13:13.770576049+07:00",
         "Scope": "local",
@@ -82,7 +81,7 @@ docker@test-imac:~/testipv6$
 ````
 docker network create --ipv6 \
 --subnet="2001:db8:1::/64" \
---gateway="2001:db8:1::1" mynetv61
+--gateway="2001:db8:1::1" net2
 ````
 
 ## example 2
@@ -126,3 +125,8 @@ docker network ls
 docker network inspect net2
 ````
 
+## remove missing interface
+
+````
+docker-compose down --remove-orphans
+````

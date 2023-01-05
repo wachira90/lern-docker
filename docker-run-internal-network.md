@@ -32,20 +32,20 @@ networks:
 ````
 
 ## list network 
-````
-root@node35716-env-6051616:~/example# docker network ls
+```
+root@node35716-env-xxxx:~/example# docker network ls
 NETWORK ID     NAME                 DRIVER    SCOPE
 882c7168b74f   bridge               bridge    local
 264e601f601c   example_my_network   bridge    local
 f48c323e01a6   host                 host      local
 43252ee60855   none                 null      local
 root@node35716-env-6051616:~/example#
-````
+```
 
 ## inspect network
-````
+```
 docker network inspect example_my_network
-````
+```
 
 ## result
 

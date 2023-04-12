@@ -46,3 +46,29 @@ docker rmi $('docker images -q')
 ```
 docker stop $('docker images -q')
 ```
+
+## socket permision
+
+### error message 
+
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get
+"http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json": dial unix /var/run/docker.sock: connect: permission denied
+
+user@bkk-vpn:~$ ls -la /var/run/docker.sock
+srw-rw---- 1 root docker 0 ม.ค.  31 22:27 /var/run/docker.sock
+
+user@bkk-vpn:~$ sudo chmod 666 /var/run/docker.sock
+
+user@bkk-vpn:~$ ls -la /var/run/docker.sock
+srw-rw-rw- 1 root docker 0 ม.ค.  31 22:27 /var/run/docker.sock
+```
+
+### fix by permission
+
+```
+sudo chmod 666 /var/run/docker.sock
+```
+
+
+

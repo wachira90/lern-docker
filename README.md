@@ -51,6 +51,16 @@ COPY /code /go
 CMD ["./code"]
 EXPOSE 8099
 ```
+## folder tree
+
+```
+.
+├── code
+│   ├── code
+│   ├── go.mod
+│   └── main.go
+└── Dockerfile
+```
 
 ## build 
 

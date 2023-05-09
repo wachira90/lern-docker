@@ -2,6 +2,86 @@
 
 lerning docker command and tip
 
+## Test golang
+
+```sh
+mkdir code/
+cd code/
+go mod init code
+nano main.go 
+go run ./main.go
+go build
+./code
+```
+
+### main.go
+
+```go
+package main
+import (
+    "fmt"
+    "log"
+    "net/http"
+)
+func homePage(w http.ResponseWriter, r *http.Request){
+    fmt.Fprintf(w, "Welcome to the HomePage!")
+    fmt.Println("Endpoint Hit: homePage")
+}
+func api(w http.ResponseWriter, r *http.Request){
+  fmt.Fprintf(w, "Welcome to the Api!")
+  fmt.Println("Endpoint Hit: Api")
+}
+func handleRequests() {
+    http.HandleFunc("/", homePage)
+    http.HandleFunc("/api", api)
+    fmt.Println("REST STARTING .... ")
+    log.Fatal(http.ListenAndServe(":8099", nil))
+}
+func main() {
+    handleRequests()
+}
+```
+
+## nano Dockerfile
+
+```Dockerfile
+FROM golang:1.20.4
+WORKDIR /go
+COPY /code /go
+CMD ["./code"]
+EXPOSE 8099
+```
+
+## build 
+
+```sh
+docker build -f Dockerfile -t golang:1.20.4-test
+```
+
+## attach show console
+
+```sh
+docker run --name golang -p 8099:8099 -it golang:1.20.4-test
+```
+
+## run in detach mode
+
+```sh
+docker run --name golang -p 8099:8099 -d golang:1.20.4-test
+```
+
+## stop service name
+
+```sh
+docker stop golang
+```
+
+# delete service name
+
+```sh
+docker rm golang
+```
+
 ## delete all images (be careful)
 
 ```
@@ -10,8 +90,9 @@ docker rmi $('docker images -aq')
 
 ## show all container
 
-```
+```sh
 docker ps -a
+docker ps -a | grep golang
 ```
 ## stop all container
 

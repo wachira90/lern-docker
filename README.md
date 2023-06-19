@@ -161,5 +161,14 @@ srw-rw-rw- 1 root docker 0 ม.ค.  31 22:27 /var/run/docker.sock
 sudo chmod 666 /var/run/docker.sock
 ```
 
+## run into container cli
 
+```
+# with host network for access internet 
+docker run --rm -it -v /home/docker/jk-project/:/usr/src/ --network=host --entrypoint bash node:16.13.2
 
+# with user node
+docker run --rm -it -v /home/docker/jk-project/:/usr/src/ -u node  --entrypoint bash node:16.13.2
+
+docker run --rm -it -v /home/docker/jk-project/:/usr/src/ --network=host -u node  --entrypoint bash node:16.13.2
+```

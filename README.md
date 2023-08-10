@@ -172,3 +172,10 @@ docker run --rm -it -v /home/docker/jk-project/:/usr/src/ -u node  --entrypoint 
 
 docker run --rm -it -v /home/docker/jk-project/:/usr/src/ --network=host -u node  --entrypoint bash node:16.13.2
 ```
+
+## delete untag images 
+
+```
+docker rmi $(docker images -f "dangling=true" -q) --force
+```
+

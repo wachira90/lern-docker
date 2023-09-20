@@ -95,7 +95,7 @@ docker rm golang
 ## delete all images (be careful)
 
 ```
-docker rmi $('docker images -aq')
+docker rmi $(docker images -aq)
 ```
 
 ## show all container
@@ -107,7 +107,7 @@ docker ps -a | grep golang
 ## stop all container
 
 ```
-docker stop $('docker images -aq')
+docker stop $(docker images -aq)
 ```
 
 ## all id in container (with start and stop container)
@@ -129,13 +129,13 @@ docker images -q
 ## delete images all by id 
 
 ```
-docker rmi $('docker images -q')
+docker rmi $(docker images -q)
 ```
 
 ## stop container on runing by id
 
 ```
-docker stop $('docker images -q')
+docker stop $(docker images -q)
 ```
 
 ## socket permision

@@ -2,7 +2,7 @@
 
 ## BUILD ORIGINAL IMAGES CACHE
 
-docker build -t wachiradu/cache-oms:v1 .
+docker build -t wachiradu/cache:oms-v1 .
 
 Dockerfile
 
@@ -34,7 +34,7 @@ Dockerfile
 docker build -t wachiradu/prod-oms:v1 .
 
 ```Dockerfile
-FROM wachiradu/cache-oms:v1
+FROM docker.io/wachiradu/cache:oms-v1
 EXPOSE 6005
 ADD exchange.jar /application/exchange.jar
 CMD java -jar /application/exchange.jar && updatedb && locate -e bench-repo

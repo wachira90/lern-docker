@@ -179,3 +179,18 @@ docker run --rm -it -v /home/docker/jk-project/:/usr/src/ --network=host -u node
 docker rmi $(docker images -f "dangling=true" -q) --force
 ```
 
+## check resource consumetion
+
+### GNU/Linux:
+
+```
+docker stats --no-stream --format "table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}" | sort -k 4 -h
+```
+
+### MacOS:
+
+```
+docker stats --no-stream --format "table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.M‌​emPerc}}" | sort -k 9 -n
+```
+
+

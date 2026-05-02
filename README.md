@@ -1,6 +1,26 @@
-# lern-docker
+# Lerning docker command and tip
 
-lerning docker command and tip
+## network and log setting
+
+nano /etc/docker/daemon.json
+
+```json
+{
+  "bip": "192.160.0.1/24",
+  "default-address-pools": [
+    {
+      "base": "192.160.100.0/24",
+      "size": 24
+    }
+  ],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "4m",
+    "max-file": "3"
+  }
+}
+```
+
 
 ## Test golang
 
